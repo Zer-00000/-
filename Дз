@@ -1,0 +1,65 @@
+#include <iostream>
+#include <map>
+using namespace std;
+int main()
+{
+	map<int, int> mp;
+	int n, a, z;
+	setlocale(0, "");
+	cout << "Введите количество домов на улице: ";
+	cin >> n;
+	cout << "Укажите дом и сколько в нем живет людей: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		int house, people;
+		cout << i << ") Дом ";
+		cin >> house;
+		cout << " Люди в нем ";
+		cin >> people;
+		mp.insert(make_pair(house, people));
+	}
+	cout << "Как вы хотите модифицировать информацию?" << endl;
+	cout << "0 - вы узнаете есть ли такой дом и сколько в нем живет людей;" << endl;
+	cout << "1 - вы можете удалить один из имеющихся домов;" << endl;
+	cout << "2 - вы можете добавить дом и поселить в нем людей." << endl;
+	cin >> a;
+		if (a == 0)
+		{
+			int house;
+			cout << "Укажите номер дома: " << endl;
+			cin >> house;
+			if (mp.count(house))
+			{
+				cout << "Количество людей: " << mp[house] << endl;
+			}
+			else
+			{
+				cout << "Такого дома не существует." << endl;
+			}
+		}
+		if (a == 1)
+		{
+			cout << "Какой дом удалить?" << endl;
+			cin >> z;
+			if (mp.find(z) == mp.end())
+			{
+				cout << "Такого дома нет в списке." << endl;
+			}
+			else
+			{
+				mp.erase(mp.find(z));
+				cout << "Этот дом удален." << endl;
+			}
+		}
+		if (a == 2)
+		{
+			int house, people;
+			cout << "Введите номер нового дома: " << endl;
+			cin >> house;
+			cout << "Введите количество людей, которые будут жить в новом доме: " << endl;
+			cin >> people;
+			mp[house] = people;
+		}
+	system("pause");
+	return 0;
+}
